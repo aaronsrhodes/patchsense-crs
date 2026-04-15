@@ -30,7 +30,7 @@ RUN ln -sf /usr/bin/python3.12 /usr/bin/python3 \
 # The patchsense package is copied from the repo root (context = repo root in bake).
 COPY patchsense/ /opt/patchsense-crs/patchsense/
 COPY pyproject.toml /opt/patchsense-crs/pyproject.toml
-RUN pip3 install /opt/patchsense-crs[mlx]
+RUN pip3 install "/opt/patchsense-crs[mlx]"
 
 # Install watchdog (required by libCRS)
 RUN pip3 install watchdog>=6.0.0 requests>=2.28.0

@@ -18,7 +18,7 @@ RUN pip3 install /libCRS \
 # Install patchsense-crs validator scripts
 COPY validator.py /opt/patchsense-crs/validator.py
 COPY sarif_parser.py /opt/patchsense-crs/sarif_parser.py
-RUN pip3 install -e /opt/patchsense-crs
+RUN pip3 install /opt/patchsense-crs
 
 ENV PYTHONPATH=/opt/patchsense-crs
 

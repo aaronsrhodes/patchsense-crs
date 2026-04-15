@@ -256,7 +256,7 @@ def _make_assessment_sarif(
                 "driver": {
                     "name": "PatchSense",
                     "version": "2.4",
-                    "informationUri": "https://github.com/YOUR_ORG/patchsense-crs",
+                    "informationUri": "https://github.com/aaronsrhodes/patchsense-crs",
                     "rules": [{
                         "id": cwe or "UNKNOWN",
                         "shortDescription": {

@@ -3,7 +3,7 @@ type:
   - bug-fixing   # semantic patch validator — filters patches from exchange dir
 
 version: "1.0.0"
-docker_registry: ghcr.io/YOUR_ORG/patchsense-crs
+docker_registry: ghcr.io/aaronsrhodes/patchsense-crs
 
 prepare_phase:
   hcl: oss-crs/docker-bake.hcl

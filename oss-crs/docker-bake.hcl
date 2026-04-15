@@ -5,7 +5,7 @@
 # =============================================================================
 
 variable "REGISTRY" {
-  default = "ghcr.io/YOUR_ORG"
+  default = "ghcr.io/aaronsrhodes"
 }
 
 variable "VERSION" {
