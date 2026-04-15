@@ -1,0 +1,1543 @@
+{
+  "auth-bypass": {
+    "family": "auth-bypass",
+    "min_examples": 21,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [
+      "adds_return_early"
+    ],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_initialization",
+      "removes_code",
+      "adds_null_check",
+      "adds_error_handling"
+    ],
+    "disjunctive_coverage": 0.857,
+    "description": "Authentication/authorization bypass: A security check is missing or can be circumvented. Root-cause fixes add or correct the authentication/ authorization check at the enforcement point. Symptom suppressions add checks at peripheral locations without securing the core enforcement path.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.381,
+        "suppress_rate": 0.333
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.143,
+        "suppress_rate": 0.333
+      },
+      "adds_length_check": {
+        "fix_rate": 0.19,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.095,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.286,
+        "suppress_rate": 0.667
+      },
+      "removes_code": {
+        "fix_rate": 0.238,
+        "suppress_rate": 0.333
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.429,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.333
+      },
+      "adds_validation": {
+        "fix_rate": 0.476,
+        "suppress_rate": 0.667
+      },
+      "adds_initialization": {
+        "fix_rate": 0.238,
+        "suppress_rate": 0.333
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.238,
+        "suppress_rate": 0.333
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.095,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.429,
+        "suppress_rate": 0.333
+      }
+    }
+  },
+  "buffer-overflow": {
+    "family": "buffer-overflow",
+    "min_examples": 178,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [
+      "adds_return_early"
+    ],
+    "disjunctive_invariant": [
+      "changes_type",
+      "adds_validation",
+      "adds_bounds_check",
+      "changes_comparison",
+      "changes_loop_bound",
+      "removes_code",
+      "adds_length_check",
+      "adds_return_early",
+      "adds_null_check",
+      "changes_allocation",
+      "adds_error_handling"
+    ],
+    "disjunctive_coverage": 0.826,
+    "description": "Buffer overflow vulnerability: Memory is written or read beyond the bounds of an allocated buffer. Common in C/C++ code involving memcpy, strcpy, array indexing, or pointer arithmetic. Root-cause fixes typically correct the allocation size, fix the copy length, or change the data type to prevent overflow. Symptom suppressions add bounds checks at call sites without fixing the underlying size mismatch.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.112,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.253,
+        "suppress_rate": 0.333
+      },
+      "adds_length_check": {
+        "fix_rate": 0.073,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.124,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.146,
+        "suppress_rate": 0.667
+      },
+      "removes_code": {
+        "fix_rate": 0.079,
+        "suppress_rate": 0.333
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.09,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.371,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.315,
+        "suppress_rate": 0.0
+      },
+      "fixes_off_by_one": {
+        "fix_rate": 0.006,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.185,
+        "suppress_rate": 0.333
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.208,
+        "suppress_rate": 0.333
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.034,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.354,
+        "suppress_rate": 0.333
+      }
+    }
+  },
+  "crypto-misuse": {
+    "family": "crypto-misuse",
+    "min_examples": 13,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "changes_type"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "changes_type",
+      "adds_validation",
+      "adds_null_check"
+    ],
+    "disjunctive_coverage": 0.923,
+    "description": "Cryptographic misuse: Broken, weak, or improperly implemented cryptographic operations. Includes use of weak algorithms (MD5, SHA1 for security), insufficient key lengths, improper certificate validation, weak PRNGs, or incorrect signature verification. Root-cause fixes replace the weak primitive with a strong one (e.g., bcrypt, AES-256-GCM) or correct the validation logic. Symptom suppressions add length checks or format validation without fixing the underlying cryptographic weakness.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.231,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.231,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.077,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.077,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.385,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.231,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.538,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.462,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.308,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.385,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.077,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.308,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "csrf": {
+    "family": "csrf",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "changes_comparison",
+      "adds_return_early",
+      "removes_code"
+    ],
+    "disjunctive_coverage": 0.8,
+    "description": "Cross-Site Request Forgery: A web application performs state-changing operations on authenticated requests without verifying the request originated from the application itself. Root-cause fixes add anti-CSRF tokens validated on every state-changing request, or use SameSite cookie attributes. Symptom suppressions check the Referer header or add CORS restrictions without proper token validation.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.533,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.267,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "deserialization": {
+    "family": "deserialization",
+    "min_examples": 13,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_error_handling",
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_error_handling",
+      "removes_code"
+    ],
+    "disjunctive_coverage": 0.846,
+    "description": "Deserialization of untrusted data: An application deserializes data from an untrusted source without type restrictions, enabling remote code execution or object injection. Root-cause fixes add type allowlists, use safe deserialization APIs (e.g., JSON instead of native serialization), or validate the serialized data before deserialization. Symptom suppressions add input validation on the serialized bytes without restricting the types that can be instantiated.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.385,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.154,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.154,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.077,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.308,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.769,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.231,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.615,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.231,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.308,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.077,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.231,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "double-free": {
+    "family": "double-free",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_initialization",
+      "adds_bounds_check",
+      "changes_allocation",
+      "adds_null_check",
+      "removes_code",
+      "changes_type"
+    ],
+    "disjunctive_coverage": 0.8,
+    "description": "Double-free vulnerability: Memory is freed more than once, corrupting the heap allocator. Root-cause fixes restructure ownership so each allocation has exactly one free, or nullify pointers after free. Symptom suppressions add a flag to track whether free was called.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.267,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "file-upload": {
+    "family": "file-upload",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_error_handling"
+    ],
+    "disjunctive_coverage": 0.733,
+    "description": "Unrestricted file upload: An application accepts file uploads without validating the file type, content, or storage location, enabling code execution or overwrite of critical files. Root-cause fixes validate both the file extension and content type (magic bytes), store uploads outside the web root with randomized names, and set proper permissions. Symptom suppressions check only the client-supplied Content-Type header or file extension without verifying actual content.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_bounds_check": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.6,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "format-string": {
+    "family": "format-string",
+    "min_examples": 12,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "changes_type"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "changes_type",
+      "adds_error_handling",
+      "adds_return_early"
+    ],
+    "disjunctive_coverage": 0.917,
+    "description": "Format string vulnerability: User input is passed as a format string argument. Root-cause fixes use a literal format string with the input as a parameter. Symptom suppressions filter specific format specifiers.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.083,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.583,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.417,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.083,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "general-bugfix": {
+    "family": "general-bugfix",
+    "min_examples": 261,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "changes_comparison",
+      "adds_bounds_check",
+      "adds_null_check",
+      "changes_type",
+      "adds_initialization",
+      "removes_code",
+      "adds_error_handling",
+      "adds_return_early",
+      "adds_length_check",
+      "changes_allocation",
+      "adds_sanitization"
+    ],
+    "disjunctive_coverage": 0.556,
+    "description": "General program bug (non-security): A functional defect such as incorrect logic, wrong return value, missing edge case, or broken algorithm. These are not security vulnerabilities but the fix-vs-suppress distinction still applies: root-cause fixes correct the defective logic, while symptom suppressions add guards or special cases that hide the incorrect behavior.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.119,
+        "suppress_rate": 0.075
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.123,
+        "suppress_rate": 0.121
+      },
+      "adds_length_check": {
+        "fix_rate": 0.054,
+        "suppress_rate": 0.048
+      },
+      "changes_allocation": {
+        "fix_rate": 0.011,
+        "suppress_rate": 0.002
+      },
+      "adds_return_early": {
+        "fix_rate": 0.05,
+        "suppress_rate": 0.079
+      },
+      "removes_code": {
+        "fix_rate": 0.061,
+        "suppress_rate": 0.174
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.08,
+        "suppress_rate": 0.025
+      },
+      "changes_type": {
+        "fix_rate": 0.077,
+        "suppress_rate": 0.126
+      },
+      "adds_validation": {
+        "fix_rate": 0.011,
+        "suppress_rate": 0.023
+      },
+      "adds_initialization": {
+        "fix_rate": 0.061,
+        "suppress_rate": 0.045
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.011,
+        "suppress_rate": 0.047
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.004,
+        "suppress_rate": 0.006
+      },
+      "changes_comparison": {
+        "fix_rate": 0.142,
+        "suppress_rate": 0.18
+      }
+    }
+  },
+  "info-leak": {
+    "family": "info-leak",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_error_handling",
+      "removes_code",
+      "adds_initialization"
+    ],
+    "disjunctive_coverage": 0.933,
+    "description": "Information disclosure: Sensitive data is exposed through error messages, logs, or uninitialized memory. Root-cause fixes remove the exposure at the source. Symptom suppressions filter output without addressing what is being leaked or why.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.467,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.533,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.5
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "injection": {
+    "family": "injection",
+    "min_examples": 47,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation",
+      "adds_sanitization"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_sanitization",
+      "removes_code"
+    ],
+    "disjunctive_coverage": 0.83,
+    "description": "Code/command/SQL injection: Untrusted input is incorporated into a query, command, or code string without sanitization. Root-cause fixes add proper escaping, parameterized queries, or input encoding at the point of construction. Symptom suppressions add input validation at a different layer without fixing the unsafe construction.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.255,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.106,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.149,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.128,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.128,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.043,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.404,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.17,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.638,
+        "suppress_rate": 0.0
+      },
+      "removes_backdoor": {
+        "fix_rate": 0.021,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.17,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.34,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.553,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.255,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "integer-overflow": {
+    "family": "integer-overflow",
+    "min_examples": 40,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [
+      "adds_bounds_check",
+      "adds_initialization",
+      "changes_loop_bound"
+    ],
+    "disjunctive_invariant": [
+      "changes_type",
+      "adds_validation",
+      "adds_bounds_check",
+      "changes_allocation",
+      "adds_return_early",
+      "changes_comparison",
+      "adds_initialization"
+    ],
+    "disjunctive_coverage": 0.8,
+    "description": "Integer overflow vulnerability: An arithmetic operation produces a value outside the representable range, leading to wraparound or incorrect indexing. Root-cause fixes change the type to a wider integer, validate input ranges before arithmetic, or restructure the computation. Symptom suppressions add bounds checks on the result after overflow has already occurred.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.175,
+        "suppress_rate": 0.25
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.225,
+        "suppress_rate": 0.75
+      },
+      "adds_length_check": {
+        "fix_rate": 0.075,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.225,
+        "suppress_rate": 0.25
+      },
+      "adds_return_early": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.1,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.3,
+        "suppress_rate": 0.5
+      },
+      "adds_validation": {
+        "fix_rate": 0.3,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.175,
+        "suppress_rate": 0.5
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.1,
+        "suppress_rate": 0.5
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.025,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.25,
+        "suppress_rate": 0.25
+      }
+    }
+  },
+  "null-deref": {
+    "family": "null-deref",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "changes_comparison",
+      "adds_null_check",
+      "changes_allocation",
+      "changes_type",
+      "adds_validation"
+    ],
+    "disjunctive_coverage": 0.733,
+    "description": "Null pointer dereference: A pointer is dereferenced without checking for null. Root-cause fixes ensure the pointer is properly initialized or that the code path that leads to null is corrected. Symptom suppressions add a null guard that returns early without fixing why the pointer was null.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.267,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.2,
+        "suppress_rate": 1.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.4,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "other": {
+    "family": "other",
+    "min_examples": 19,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_error_handling",
+      "adds_null_check",
+      "removes_code",
+      "adds_validation",
+      "adds_bounds_check"
+    ],
+    "disjunctive_coverage": 0.789,
+    "description": "Vulnerability that does not fit standard CWE families. Analyze the structural patterns in the code to determine whether a fix addresses a root cause or merely suppresses a symptom.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.211,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.105,
+        "suppress_rate": 0.5
+      },
+      "adds_length_check": {
+        "fix_rate": 0.105,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.211,
+        "suppress_rate": 0.5
+      },
+      "removes_code": {
+        "fix_rate": 0.211,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.316,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.211,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.316,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.158,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.211,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.158,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.053,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "path-traversal": {
+    "family": "path-traversal",
+    "min_examples": 21,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_error_handling"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_error_handling",
+      "adds_null_check",
+      "adds_length_check",
+      "adds_return_early",
+      "removes_code"
+    ],
+    "disjunctive_coverage": 0.905,
+    "description": "Path traversal vulnerability: User-controlled input is used to construct a file path without sanitization, allowing access to files outside the intended directory. Root-cause fixes canonicalize the path and validate it against an allowed prefix. Symptom suppressions block specific patterns like '../' without comprehensive path normalization.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.048,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.19,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.095,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.19,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.048,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.524,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.143,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.476,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.095,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.143,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.143,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "race-condition": {
+    "family": "race-condition",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_return_early",
+      "removes_code",
+      "changes_type"
+    ],
+    "disjunctive_coverage": 0.733,
+    "description": "Race condition: Concurrent access to shared state without proper synchronization. Root-cause fixes add locks, atomic operations, or restructure to eliminate the shared mutable state. Symptom suppressions add retry logic or timing-dependent workarounds.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.5
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.267,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.5
+      },
+      "adds_return_early": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.5
+      },
+      "adds_validation": {
+        "fix_rate": 0.467,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.5
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.5
+      },
+      "changes_comparison": {
+        "fix_rate": 0.267,
+        "suppress_rate": 1.0
+      }
+    }
+  },
+  "resource-mgmt": {
+    "family": "resource-mgmt",
+    "min_examples": 20,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "changes_comparison",
+      "adds_bounds_check",
+      "adds_null_check",
+      "removes_code"
+    ],
+    "disjunctive_coverage": 0.9,
+    "description": "Resource management vulnerability: Resources (memory, file handles, connections) are not properly acquired, tracked, or released. Includes memory leaks, infinite loops, and resource exhaustion. Root-cause fixes correct the lifecycle management. Symptom suppressions add limits or timeouts without fixing the leak.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.15,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.35,
+        "suppress_rate": 0.333
+      },
+      "adds_length_check": {
+        "fix_rate": 0.05,
+        "suppress_rate": 0.167
+      },
+      "changes_allocation": {
+        "fix_rate": 0.3,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.1,
+        "suppress_rate": 0.333
+      },
+      "removes_code": {
+        "fix_rate": 0.1,
+        "suppress_rate": 0.167
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.3,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.3,
+        "suppress_rate": 0.167
+      },
+      "adds_validation": {
+        "fix_rate": 0.55,
+        "suppress_rate": 0.167
+      },
+      "adds_initialization": {
+        "fix_rate": 0.25,
+        "suppress_rate": 0.333
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.35,
+        "suppress_rate": 0.333
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.05,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.35,
+        "suppress_rate": 0.167
+      }
+    }
+  },
+  "ssrf": {
+    "family": "ssrf",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_return_early",
+      "adds_null_check",
+      "removes_backdoor"
+    ],
+    "disjunctive_coverage": 0.8,
+    "description": "Server-Side Request Forgery: An application makes HTTP/network requests using attacker-controlled URLs, allowing access to internal services or metadata endpoints. Root-cause fixes validate and restrict the target URL against an allowlist of permitted hosts/schemes, or use a proxy that enforces network boundaries. Symptom suppressions blocklist specific IP ranges (e.g., 169.254.x.x) without comprehensive URL validation.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.533,
+        "suppress_rate": 0.0
+      },
+      "removes_backdoor": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.267,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "type-confusion": {
+    "family": "type-confusion",
+    "min_examples": 15,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_null_check",
+      "changes_comparison"
+    ],
+    "disjunctive_coverage": 0.667,
+    "description": "Type confusion: An object is used as a different type than what it actually is. Root-cause fixes add type checking or correct the cast. Symptom suppressions add size checks without verifying the actual type.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.267,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.133,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.2,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.533,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.067,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "uninitialized": {
+    "family": "uninitialized",
+    "min_examples": 44,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_null_check",
+      "removes_code",
+      "adds_validation",
+      "adds_initialization"
+    ],
+    "disjunctive_coverage": 0.523,
+    "description": "Uninitialized variable/memory: A variable or memory region is used before being initialized. Root-cause fixes add proper initialization at the declaration or allocation site. Symptom suppressions add checks for specific values without ensuring initialization.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.227,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.068,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.023,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.023,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.136,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.114,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.136,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.114,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.045,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.091,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "unknown": {
+    "family": "unknown",
+    "min_examples": 24,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_error_handling",
+      "adds_null_check",
+      "changes_type",
+      "adds_validation",
+      "changes_comparison",
+      "adds_length_check",
+      "changes_allocation",
+      "removes_code"
+    ],
+    "disjunctive_coverage": 0.875,
+    "description": "Vulnerability with unspecified CWE. Analyze the structural patterns in the code to determine whether a fix addresses a root cause or merely suppresses a symptom.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.292,
+        "suppress_rate": 0.5
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.083,
+        "suppress_rate": 0.0
+      },
+      "adds_length_check": {
+        "fix_rate": 0.208,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.208,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.208,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.042,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.375,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.167,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.083,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.333,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "use-after-free": {
+    "family": "use-after-free",
+    "min_examples": 16,
+    "invariant_patterns": [],
+    "strong_fix_signals": [],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "changes_type",
+      "adds_null_check",
+      "removes_code",
+      "adds_initialization",
+      "changes_allocation"
+    ],
+    "disjunctive_coverage": 0.812,
+    "description": "Use-after-free vulnerability: Memory is accessed after it has been freed. Root-cause fixes restructure ownership so the pointer is not used after free, or nullify the pointer immediately after free. Symptom suppressions add null checks before use without ensuring the lifecycle is correct.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.25,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.188,
+        "suppress_rate": 0.0
+      },
+      "changes_allocation": {
+        "fix_rate": 0.188,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.062,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.312,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.312,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.25,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.25,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.062,
+        "suppress_rate": 0.0
+      },
+      "changes_comparison": {
+        "fix_rate": 0.312,
+        "suppress_rate": 0.0
+      }
+    }
+  },
+  "xxe": {
+    "family": "xxe",
+    "min_examples": 16,
+    "invariant_patterns": [],
+    "strong_fix_signals": [
+      "adds_validation"
+    ],
+    "anti_patterns": [],
+    "disjunctive_invariant": [
+      "adds_validation",
+      "adds_return_early",
+      "removes_code",
+      "adds_sanitization"
+    ],
+    "disjunctive_coverage": 0.688,
+    "description": "XML External Entity (XXE) injection: An XML parser processes external entity references in untrusted input, allowing file disclosure, SSRF, or denial of service. Root-cause fixes disable external entity processing in the parser configuration (e.g., FEATURE_SECURE_PROCESSING, disallow-doctype-decl). Symptom suppressions filter specific entity patterns in the XML input without securing the parser itself.",
+    "sufficient_data": true,
+    "pattern_rates": {
+      "adds_null_check": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      },
+      "adds_bounds_check": {
+        "fix_rate": 0.062,
+        "suppress_rate": 0.0
+      },
+      "adds_return_early": {
+        "fix_rate": 0.188,
+        "suppress_rate": 0.0
+      },
+      "removes_code": {
+        "fix_rate": 0.062,
+        "suppress_rate": 0.0
+      },
+      "adds_error_handling": {
+        "fix_rate": 0.312,
+        "suppress_rate": 0.0
+      },
+      "changes_type": {
+        "fix_rate": 0.188,
+        "suppress_rate": 0.0
+      },
+      "adds_validation": {
+        "fix_rate": 0.5,
+        "suppress_rate": 0.0
+      },
+      "adds_initialization": {
+        "fix_rate": 0.188,
+        "suppress_rate": 0.0
+      },
+      "changes_loop_bound": {
+        "fix_rate": 0.062,
+        "suppress_rate": 0.0
+      },
+      "adds_sanitization": {
+        "fix_rate": 0.125,
+        "suppress_rate": 0.0
+      }
+    }
+  }
+}

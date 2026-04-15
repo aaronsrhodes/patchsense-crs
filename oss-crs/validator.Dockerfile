@@ -15,10 +15,9 @@ COPY --from=libcrs . /libCRS
 RUN pip3 install /libCRS \
     && python3 -c "from libCRS.base import DataType; print('libCRS OK')"
 
-# Install patchsense-crs validator scripts
+# Copy validator scripts into the already-installed patchsense-crs location
 COPY validator.py /opt/patchsense-crs/validator.py
 COPY sarif_parser.py /opt/patchsense-crs/sarif_parser.py
-RUN pip3 install /opt/patchsense-crs
 
 ENV PYTHONPATH=/opt/patchsense-crs
 
