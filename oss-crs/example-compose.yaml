@@ -1,0 +1,49 @@
+##############################################################################
+#                  PatchSense CRS — Example Compose Configuration            #
+##############################################################################
+# Run patchsense-crs alongside crs-libfuzzer:
+#   - libfuzzer finds crashes and submits POVs to the exchange
+#   - patchsense-crs validates patches from any other bug-fixing CRS in the
+#     ensemble, forwarding only confirmed root-cause fixes
+##############################################################################
+
+run_env: local
+docker_registry: local
+
+# --- Infrastructure ---------------------------------------------------------
+oss_crs_infra:
+  cpuset: "0-1"
+  memory: "4G"
+
+# --- Detection (libfuzzer as bug-finding component) -------------------------
+crs-libfuzzer:
+  cpuset: "2-5"
+  memory: "8G"
+  source:
+    url: https://github.com/Team-Atlanta/crs-libfuzzer.git
+    ref: main
+
+# --- Validation (PatchSense) ------------------------------------------------
+patchsense-crs:
+  source:
+    local_path: /Users/aaronr/development/AIxCC/patchsense-crs
+  cpuset: "6-7"
+  memory: "24G"   # Qwen 32B needs ~20GB unified memory on Apple Silicon
+  llm_budget: 50
+  additional_env:
+    # Use local Qwen MLX model (running on host at port 8080)
+    # The Docker bridge IP (172.17.0.1) reaches the host's localhost from inside container.
+    # Update PATCHSENSE_MODEL to the model name registered in litellm config.
+    PATCHSENSE_MODEL: "patchsense-local"
+    PATCHSENSE_CONFIDENCE_THRESHOLD: "0.75"
+    PATCHSENSE_FORWARD_UNCERTAIN: "false"
+    PATCHSENSE_TIMEOUT: "120"
+
+# --- Optional: Route our local Qwen model through LiteLLM ------------------
+# Uncomment and configure if running with an external LiteLLM proxy.
+# llm_config:
+#   litellm:
+#     mode: external
+#     external:
+#       url_env: LITELLM_API_BASE
+#       key_env: LITELLM_API_KEY

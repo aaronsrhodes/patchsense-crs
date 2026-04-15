@@ -1,0 +1,16 @@
+#!/bin/bash
+# =============================================================================
+# compile_target — build phase entry point
+# =============================================================================
+# Compiles the OSS-Fuzz target project and submits build outputs to libCRS.
+# PatchSense is a validator — we still need a build phase so the framework
+# can provide compiled artifacts to other CRSs in the ensemble.
+# =============================================================================
+
+set -e
+
+# OSS-Fuzz standard compile step
+compile
+
+# Submit the build output directory
+libCRS submit-build-output $OUT build

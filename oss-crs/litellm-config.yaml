@@ -1,0 +1,25 @@
+# LiteLLM config for routing API calls to our local Qwen MLX model.
+# Used when running inside OSS-CRS containers (OSS_CRS_LLM_API_URL is set).
+#
+# The Docker bridge IP (172.17.0.1) reaches the host machine's localhost.
+# Our Qwen MLX server runs at port 8080 (OpenAI-compatible API).
+
+model_list:
+  # Local Qwen 2.5 Coder 32B + LoRA fine-tune (PatchSense v2.4, val_loss=0.132)
+  # Running via: mlx_lm.server --model patchsense-qwen --port 8080
+  - model_name: patchsense-local
+    litellm_params:
+      model: openai/patchsense-qwen
+      api_key: "none"
+      api_base: "http://172.17.0.1:8080/v1"
+
+  # Cloud fallback models (if local MLX not available)
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: anthropic/claude-sonnet-4-6
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
